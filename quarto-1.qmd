@@ -1,0 +1,46 @@
+---
+title: "Untitled"
+format: html
+execute: 
+  echo: false
+---
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+```{r}
+library(palmerpenguins)
+```
+
+```{r}
+penguins
+```
+```{r}
+# Load required libraries
+library(tidyverse)
+library(palmerpenguins)
+
+# Clean data: remove NAs
+penguins_clean <- penguins %>%
+  drop_na()
+
+# Plot
+ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point(alpha = 0.8, size = 3) +
+  scale_color_viridis_d(option = "D") +
+  labs(
+    title = "Penguins: Flipper Length vs Body Mass",
+    subtitle = "Colored by Species from the Palmer Penguins Dataset",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    color = "Species"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "right"
+  )
+
+```
